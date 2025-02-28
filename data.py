@@ -1,12 +1,12 @@
 import csv
 
-class Csv:
+class MyCsv:
     def __init__(self):
         self.data = 'AgroPro/data.csv'
         
     def salvar(self, dados):
         with open(self.data, 'w', encoding='utf-8', newline='') as data:
-            escritor = csv.writer(data)
+            escritor = MyCsv.writer(data)
             escritor.writerows(dados)
     
     def procurar(self, procurar):
@@ -37,26 +37,32 @@ class Csv:
         else:
             conteudo = self.ler()
             print('cooont', conteudo)
-            print(linha, coluna, sep='\n', end='\n\n')
+            print(f'Endereço encontrado: ({linha}, {coluna})')
             conteudo[linha, coluna] = substituir
             self.salvar(conteudo)
             print('Alterado com sucesso')
 
     def ler(self):
-        with open(self.data) as a:
-            leitor = csv.reader(a)
-            cont_total = []
-            cont_linha = []
-            for linha in leitor:
-                for elemento in linha:
-                    cont_linha.append(elemento)
-                cont_total.append(cont_linha)
-                cont_linha = []
-            return cont_total
+        try:
+            with open(self.data, mode='r', encoding='utf-8', newline='') as a:
+                leitor = csv.reader(a)
+                # print(leitor)
+                total = []
+                linha = []
+                for for_linha in leitor:
+                    for elemento in for_linha:
+                        linha.append(elemento)
+                    total.append(for_linha)
+                    linha = []
+                return total
+        except:
+            print('Ocoreu erro durante a leitura do arquivo')
 
 if __name__ == '__main__':
-    classe = Csv()
+    classe = MyCsv()
     #classe.salvar([['asdfhjk', 'sd53'],['as'], ['c', 's']])
-    #dados = classe.ler()
-    #print(dados[1:])
+    dados = classe.ler()
+    for linha in dados:
+        print(linha)
+    print('----------////-----------------////------------------')
     classe.substituir('c', '12345678')
