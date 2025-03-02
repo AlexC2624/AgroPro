@@ -1,5 +1,5 @@
 import os
-import time
+from back import Gerenciador
 
 def main():
     menu_exibir = ['Cadastro de Rebanho', 'Cadastro de Lote', 'Manejo Sanitário', 'Reprodução', 'Produção Leiteira',
@@ -34,10 +34,12 @@ def main():
 def cads_rebanho():
     os.system('clear')
     print('\tNovo cadastro de rebanho\n')
-    nome = input('Nome: ')
-    peso = input('Peso: ')
-    idade = input('Idade: ')
-    
+    dados = []
+    dados.append(input('Nome: '))
+    dados.append(input('Peso: '))
+    dados.append(input('Idade: '))
+    banco = Gerenciador('cads_rebebanho.csv')
+    banco.salvar_registro(dados)
     return
 def cads_lote():
     pass
