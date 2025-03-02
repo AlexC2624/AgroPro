@@ -35,7 +35,9 @@ def cads_rebanho():
     os.system('clear')
     print('\tNovo cadastro de rebanho\n')
     nome = input('Nome: ')
-
+    peso = input('Peso: ')
+    idade = input('Idade: ')
+    
     return
 def cads_lote():
     pass
