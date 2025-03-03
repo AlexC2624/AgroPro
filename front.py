@@ -39,8 +39,16 @@ def cads_rebanho():
     dados.append(input('Peso: '))
     dados.append(input('Idade: '))
     banco = Gerenciador('cads_rebebanho.csv')
-    banco.salvar_registro(dados)
+    salvo = banco.salvar_registro(dados)
+    if salvo:
+        print(f'Rebanho \'{dados[0]}\' salvo')
+    else:
+        print('Erro au salvar o rebanho')
+        for txt in salvo:
+            print('\t', txt)
+    input('ENTER para voltar ')
     return
+
 def cads_lote():
     pass
 def cads_manejoSanit():
