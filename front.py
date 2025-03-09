@@ -38,7 +38,7 @@ def cads_rebanho():
     dados.append(input('Nome: '))
     dados.append(input('Peso: '))
     dados.append(input('Idade: '))
-    banco = Gerenciador('cads_rebebanho.csv')
+    banco = Gerenciador('cads_rebanho.csv')
     salvo = banco.salvar_registro(dados)
     if salvo:
         print(f'Rebanho \'{dados[0]}\' salvo')

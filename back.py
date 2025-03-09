@@ -30,16 +30,33 @@ class Gerenciador:
         
     def salvar_registro(self, valores, verificar_duplicidade=[None]):
         """
+        Verifica se foi informado os valores a verificar a duplicidade
+            - True
+                - Consulta os registros
+                - Inicia o loop para cada elemento a verificar a duplicidade
+                    - Verifica os dados que devem ser únicos
+                        - Dados
+                            - Verifica se os dados já estão salvos
+                                - True
+                                    - Cria uma mensagem de erro personalizada para o caso
+                                    - Armazena a mensagem
+                                    - Volta para o início do loop
+                                - False
+                                    - Volta para o início do loop
+                - Salva/Adiciona os dados n arquivo data
         Args:
             valores (list): Lista com os dados a serem salvos, a lista representa a linha.
             verificar_duplicidade (list, optional): Índices das colunas para verificar duplicatas. Defaults to None.
+        
+        Returns:
+            str: Uma mensagem se deu certo ou se deu erro, retorna a mensagem com o erro.
         """
-        indice = 0
-        if verificar_duplicidade[0] != None:
+        erros = []
+        if verificar_duplicidade != [None]:
             for idx in verificar_duplicidade:
-                verificacao = self.verif_duplicidade(idx, valores[idx])
-                if len(verificacao) != 0:
-                    return False, idx
+                resultado = self.verif_duplicidade(idx, valores[idx])
+                if resultado != []:
+                    erros.append()
 
 class Banco:
     def __init__(self, nome_banco_data):
@@ -65,3 +82,8 @@ class Banco:
             for linha in dados:
                 arquivo_w.write(linha + ', ')
             arquivo_w.write('\n')
+
+###########################################
+
+if __name__ == '__main__':
+    
